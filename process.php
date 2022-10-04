@@ -1,6 +1,8 @@
 <?php
-$conn = mysqli_connect("localhost","root",111111); # 변수conn을 통해서 sql서버 접속 정보, (접속하려는 서버, 사용자 아이디, 비번)
-mysqli_select_db($conn,"opentutorials"); # db 선택, (sql서버 접속 정보를 담은 변수, 사용하려는 db이름)
+require("config/config.php");
+require("lib/db.php");
+$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+$result = mysqli_query($conn, "SELECT * FROM topic");
 
 $title = mysqli_real_escape_string($conn,$_POST['title']);
 $author = mysqli_real_escape_string($conn,$_POST['author']);

@@ -1,9 +1,10 @@
 <?php
 	// mysql 테이블의 데이터 조회
 
-	$conn = mysqli_connect("localhost","root",111111); # 변수conn을 통해서 sql서버 접속 정보, (접속하려는 서버, 사용자 아이디, 비번)
-	mysqli_select_db($conn,"opentutorials"); # db 선택, (sql서버 접속 정보를 담은 변수, 사용하려는 db이름)
-	$result = mysqli_query($conn,"SELECT * FROM topic"); # 변수result에 db조회 데이터 할당
+	require("config/config.php"); // $config배열을 정의한 파
+	require("lib/db.php"); // 라이브러리
+	$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+	$result = mysqli_query($conn, "SELECT * FROM topic");
 
  ?>
 <!DOCTYPE html>
